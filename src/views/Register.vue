@@ -1,176 +1,241 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    <!-- 背景装饰元素 -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
-      <div class="absolute top-1/4 left-1/4 w-40 h-40 bg-purple-200 rounded-full opacity-15 blur-2xl"></div>
-    </div>
-
-    <div class="max-w-md w-full space-y-8 relative z-10">
-      <!-- Logo和标题 -->
-      <div class="text-center">
-        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-          <UserIcon class="w-10 h-10 text-white" />
-        </div>
-        <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
-          创建账号
-        </h2>
-        <p class="text-gray-600 text-lg">
-          或
-          <router-link to="/login" class="text-blue-600 hover:text-blue-500 font-semibold transition-colors">
-            已有账号登录
-          </router-link>
-        </p>
-      </div>
-      
-      <!-- 注册卡片 -->
-      <div class="bg-white rounded-2xl shadow-2xl p-8 backdrop-blur-sm border border-gray-100/50">
-        <t-form :data="form" :rules="rules" @submit="handleRegister" class="space-y-6">
-          <div class="space-y-4">
-            <t-form-item name="username">
-              <t-input
-                v-model="form.username"
-                placeholder="请输入用户名"
-                size="large"
-                clearable
-                class="custom-input"
-              >
-                <template #prefix-icon>
-                  <UserIcon class="w-5 h-5" />
+  <div class="register-container">
+    <!-- 顶部导航栏 -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="title">在线题库系统</h1>
+          <div class="header-actions">
+            <div class="nav-buttons">
+              <Button @click="goToHome" variant="outline" class="nav-button">
+                <template #icon>
+                  <HomeIcon />
                 </template>
-              </t-input>
-            </t-form-item>
-            
-            <t-form-item name="email">
-              <t-input
-                v-model="form.email"
-                placeholder="请输入邮箱"
-                size="large"
-                clearable
-                class="custom-input"
-              >
-                <template #prefix-icon>
-                  <MailIcon class="w-5 h-5" />
+                首页
+              </Button>
+              <Button @click="goToAbout" variant="outline" theme="default" class="nav-button">
+                <template #icon>
+                  <InfoCircleIcon />
                 </template>
-              </t-input>
-            </t-form-item>
-            
-            <t-form-item name="password">
-              <t-input
-                v-model="form.password"
-                type="password"
-                placeholder="请输入密码"
-                size="large"
-                clearable
-                class="custom-input"
-              >
-                <template #prefix-icon>
-                  <LockOnIcon class="w-5 h-5" />
-                </template>
-              </t-input>
-            </t-form-item>
-
-            <t-form-item name="confirmPassword">
-              <t-input
-                v-model="form.confirmPassword"
-                type="password"
-                placeholder="请确认密码"
-                size="large"
-                clearable
-                class="custom-input"
-              >
-                <template #prefix-icon>
-                  <LockOnIcon class="w-5 h-5" />
-                </template>
-              </t-input>
-            </t-form-item>
-          </div>
-
-          <!-- 验证码区域 -->
-          <div v-if="showCaptcha" class="space-y-4">
-            <t-alert
-              theme="warning"
-              icon
-              title="需要验证码验证"
-              description="请输入验证码完成注册"
-              class="rounded-xl"
-            />
-            <t-form-item name="captcha">
-              <t-input
-                v-model="form.captcha"
-                placeholder="请输入验证码"
-                size="large"
-                clearable
-                class="custom-input"
-              />
-            </t-form-item>
-          </div>
-
-          <t-form-item v-if="error">
-            <t-alert
-              theme="error"
-              icon
-              :title="error"
-              closable
-              class="rounded-xl"
-            />
-          </t-form-item>
-
-          <t-form-item>
-            <t-button
-              theme="primary"
-              :loading="loading"
-              type="submit"
-              size="large"
-              class="w-full register-btn"
-            >
-              {{ loading ? '注册中...' : '立即注册' }}
-            </t-button>
-          </t-form-item>
-
-          <!-- 第三方注册 -->
-          <div class="text-center">
-            <p class="text-gray-500 text-sm mb-4">或使用其他方式注册</p>
-            <div class="flex justify-center space-x-4">
-              <button class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-                <LogoWechatStrokeIcon class="w-5 h-5 text-green-600" />
-              </button>
-              <button class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-                <StarIcon class="w-5 h-5 text-gray-800" />
-              </button>
-              <button class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-                <LogoQqIcon class="w-5 h-5 text-blue-500" />
-              </button>
+                关于
+              </Button>
             </div>
           </div>
-        </t-form>
+        </div>
       </div>
+    </header>
 
-      <div class="text-center text-sm text-gray-500">
-        © 2024 题库系统 - 专业在线学习平台
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+      <div class="container">
+        <div class="register-wrapper">
+          <!-- Logo和标题 -->
+          <div class="register-header">
+            <div class="logo-container">
+              <UserIcon class="logo-icon" />
+            </div>
+            <h2 class="register-title">
+              创建账号
+            </h2>
+            <p class="register-subtitle">
+              加入我们，开启您的学习之旅
+            </p>
+            <p class="register-link">
+              已有账户？
+              <router-link to="/login" class="link">
+                立即登录
+              </router-link>
+            </p>
+          </div>
+          
+          <!-- 注册卡片 -->
+          <div class="register-card">
+            <Form :data="form" :rules="rules" @submit="handleRegister" class="register-form">
+              <div class="form-fields">
+                <div class="form-group">
+                  <label class="form-label">用户名</label>
+                  <FormItem name="username">
+                    <Input
+                      v-model="form.username"
+                      placeholder="请输入用户名"
+                      size="large"
+                      clearable
+                      class="custom-input"
+                    >
+                      <template #prefix-icon>
+                        <UserIcon />
+                      </template>
+                    </Input>
+                  </FormItem>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">邮箱地址</label>
+                  <FormItem name="email">
+                    <Input
+                      v-model="form.email"
+                      placeholder="请输入邮箱地址"
+                      size="large"
+                      clearable
+                      class="custom-input"
+                    >
+                      <template #prefix-icon>
+                        <MailIcon />
+                      </template>
+                    </Input>
+                  </FormItem>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">密码</label>
+                  <FormItem name="password">
+                    <Input
+                      v-model="form.password"
+                      type="password"
+                      placeholder="请输入密码（至少6位）"
+                      size="large"
+                      clearable
+                      class="custom-input"
+                    >
+                      <template #prefix-icon>
+                        <LockOnIcon />
+                      </template>
+                    </Input>
+                  </FormItem>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">确认密码</label>
+                  <FormItem name="confirmPassword">
+                    <Input
+                      v-model="form.confirmPassword"
+                      type="password"
+                      placeholder="请再次输入密码"
+                      size="large"
+                      clearable
+                      class="custom-input"
+                    >
+                      <template #prefix-icon>
+                        <LockOnIcon />
+                      </template>
+                    </Input>
+                  </FormItem>
+                </div>
+              </div>
+
+              <!-- 用户协议 -->
+              <div class="terms-section">
+                <label class="terms-checkbox">
+                  <input type="checkbox" v-model="form.agreeTerms" required>
+                  <span class="terms-text">
+                    我已阅读并同意
+                    <a href="#" class="terms-link">用户协议</a>
+                    和
+                    <a href="#" class="terms-link">隐私政策</a>
+                  </span>
+                </label>
+              </div>
+
+              <!-- 验证码区域 -->
+              <div v-if="showCaptcha" class="captcha-section">
+                <Alert
+                  theme="warning"
+                  title="需要验证码验证"
+                  description="请输入验证码完成注册"
+                />
+                <FormItem name="captcha">
+                  <Input
+                    v-model="form.captcha"
+                    placeholder="请输入验证码"
+                    size="large"
+                    clearable
+                    class="custom-input"
+                  />
+                </FormItem>
+              </div>
+
+              <FormItem v-if="error">
+                <Alert
+                  theme="error"
+                  :title="error"
+                  closable
+                />
+              </FormItem>
+
+              <FormItem>
+                <Button
+                  theme="primary"
+                  :loading="loading"
+                  type="submit"
+                  size="large"
+                  class="register-btn"
+                >
+                  {{ loading ? '注册中...' : '立即注册' }}
+                </Button>
+              </FormItem>
+
+              <!-- 第三方注册 -->
+              <div class="social-login">
+                <p class="social-text">或使用其他方式注册</p>
+                <div class="social-buttons">
+                  <button class="social-btn">
+                    <LogoWechatStrokeIcon />
+                  </button>
+                  <button class="social-btn">
+                    <LogoGithubIcon />
+                  </button>
+                  <button class="social-btn">
+                    <LogoQqIcon />
+                  </button>
+                </div>
+              </div>
+            </Form>
+          </div>
+
+          <div class="footer-text">
+            © 2024 题库系统 - 专业在线学习平台
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { UserIcon, MailIcon, LockOnIcon, LogoWechatStrokeIcon, LogoGithubIcon, LogoQqIcon } from 'tdesign-icons-vue-next'
+import {
+  Form,
+  FormItem,
+  Input,
+  Button,
+  Alert
+} from 'tdesign-vue-next'
+import {
+  UserIcon,
+  MailIcon,
+  LockOnIcon,
+  LogoWechatStrokeIcon,
+  LogoGithubIcon,
+  LogoQqIcon,
+  HomeIcon,
+  InfoCircleIcon
+} from 'tdesign-icons-vue-next'
 import authService from '../services/authService.js'
 
 const router = useRouter()
 const loading = ref(false)
 const error = ref('')
 const showCaptcha = ref(false)
+const backgroundImage = ref('')
 
 const form = reactive({
   username: '',
   email: '',
   password: '',
   confirmPassword: '',
-  captcha: ''
+  captcha: '',
+  agreeTerms: false
 })
 
 const validatePassword = (rule, value, callback) => {
@@ -204,12 +269,34 @@ const rules = reactive({
   ]
 })
 
+// 获取随机背景图片
+const loadBackgroundImage = () => {
+  try {
+    // 直接设置图片URL，API返回的是图片本身
+    backgroundImage.value = 'https://api.fw1028.top/scenery.php?return=img'
+  } catch (error) {
+    console.log('背景图片加载失败，使用默认背景')
+  }
+}
+
 onMounted(() => {
   // 如果已经登录，重定向到首页
   if (authService.isLoggedIn()) {
     router.push('/')
   }
+  
+  // 加载背景图片
+  loadBackgroundImage()
 })
+
+// 导航方法
+const goToHome = () => {
+  router.push('/')
+}
+
+const goToAbout = () => {
+  router.push('/about')
+}
 
 const handleRegister = async () => {
   loading.value = true
@@ -241,82 +328,320 @@ const handleRegister = async () => {
 </script>
 
 <style scoped>
-:deep(.custom-input .t-input__wrap) {
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.register-container {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page);
+  background-image: v-bind('backgroundImage ? `url(${backgroundImage})` : "none"');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.register-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.register-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--td-text-color-primary);
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav-button {
+  min-width: 100px;
+}
+
+.main-content {
+  padding: 40px 0;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+}
+
+.register-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-container {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
   transition: all 0.3s ease;
-  height: 52px;
 }
 
-:deep(.custom-input .t-input__wrap:hover) {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+.logo-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
 }
 
-:deep(.custom-input .t-input__wrap.t-is-focused) {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
-  transform: translateY(-1px);
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  color: white;
 }
 
-:deep(.custom-input .t-input__inner) {
+.register-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--td-text-color-primary);
+  margin: 0 0 12px 0;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.register-subtitle {
   font-size: 16px;
-  color: #1f2937;
+  color: var(--td-text-color-secondary);
+  margin: 0 0 16px 0;
 }
 
-:deep(.custom-input .t-input__prefix) {
-  color: #64748b;
-  margin-left: 12px;
+.register-link {
+  font-size: 14px;
+  color: var(--td-text-color-placeholder);
+}
+
+.link {
+  color: var(--td-success-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--td-success-color-hover);
+  text-decoration: underline;
+}
+
+.register-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--td-text-color-primary);
+}
+
+.terms-section {
+  margin: 16px 0;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.terms-checkbox input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--td-success-color);
+  margin-top: 2px;
+}
+
+.terms-text {
+  font-size: 14px;
+  color: var(--td-text-color-secondary);
+  line-height: 1.5;
+}
+
+.terms-link {
+  color: var(--td-success-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.terms-link:hover {
+  color: var(--td-success-color-hover);
+  text-decoration: underline;
+}
+
+.captcha-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .register-btn {
-  border-radius: 12px !important;
-  font-weight: 600 !important;
-  height: 52px !important;
-  font-size: 16px !important;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
-  border: none !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
-.register-btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4) !important;
+.social-login {
+  text-align: center;
 }
 
-.register-btn:active {
-  transform: translateY(0) !important;
+.social-text {
+  font-size: 14px;
+  color: var(--td-text-color-placeholder);
+  margin: 0 0 16px 0;
 }
 
-.register-btn:deep(.t-icon) {
-  margin-right: 8px;
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--td-bg-color-secondarycontainer);
+  border: 1px solid var(--td-border-level-1-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+  background: var(--td-bg-color-container-hover);
+  transform: translateY(-1px);
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 12px;
+  color: var(--td-text-color-placeholder);
+  margin-top: 24px;
 }
 
 /* 响应式设计 */
-@media (max-width: 640px) {
-  .text-center h2 {
-    font-size: 32px;
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 16px;
   }
-  
-  :deep(.custom-input .t-input__inner) {
-    height: 48px;
+
+  .nav-buttons {
+    justify-content: center;
+    width: 100%;
   }
-  
-  .register-btn {
-    height: 48px !important;
+
+  .nav-button {
+    flex: 1;
+    min-width: auto;
+  }
+
+  .main-content {
+    padding: 24px 0;
+  }
+
+  .register-card {
+    padding: 24px;
+  }
+
+  .register-title {
+    font-size: 28px;
   }
 }
 
-/* 动画效果 */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
 
-.w-20.h-20 {
-  animation: float 3s ease-in-out infinite;
+  .title {
+    font-size: 20px;
+  }
+
+  .register-title {
+    font-size: 24px;
+  }
 }
 </style>
