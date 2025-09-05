@@ -1,0 +1,38 @@
+{
+  "name": "tiku-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server:install": "cd server && npm install",
+    "server:dev": "cd server && npm run dev",
+    "server:seed": "cd server && npm run seed",
+    "dev:full": "concurrently \"npm run server:dev\" \"npm run dev\"",
+    "setup": "npm install && npm run server:install"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "axios": "^1.11.0",
+    "crypto-js": "^4.2.0",
+    "pinia": "^2.1.7",
+    "tdesign-icons-vue-next": "^0.3.6",
+    "tdesign-vue-next": "^1.13.1",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.5.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vue-tsc": "^1.8.25"
+  }
+}
