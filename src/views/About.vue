@@ -69,7 +69,28 @@
           </div>
         </Card>
 
-       
+        <!-- 赞赏区域 -->
+        <Card class="donation-card">
+          <div class="donation-content">
+            <h2>
+              <HeartIcon size="24" />
+              支持项目
+            </h2>
+            <p>如果这个项目对您有帮助，欢迎通过以下方式支持我们。您的支持是我们不断前进的动力！</p>
+            <p class="hitokoto-text">"{{ hitokoto }}"</p>
+            <div class="donation-section">
+              <div class="donation-item">
+                <img src="/wechat.jpg" alt="WeChat Pay" class="donation-qr-code" />
+                <p>微信赞赏</p>
+              </div>
+              <div class="donation-item">
+                <img src="/alipay.png" alt="Alipay" class="donation-qr-code" />
+                <p>支付宝赞赏</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
 
         <!-- 推荐资源区域 -->
         <Card class="ad-section">
@@ -107,6 +128,8 @@
             </div>
           </div>
         </Card>
+
+       
  <!-- 联系信息 -->
         <Card class="contact-card">
           <div class="contact-content">
@@ -167,7 +190,8 @@ import {
   MailIcon,
   LinkIcon,
   EarthIcon,
-  StarIcon
+  StarIcon,
+  HeartIcon
 } from 'tdesign-icons-vue-next'
 
 const router = useRouter()
@@ -209,8 +233,21 @@ function openLink(url: string) {
   window.open(url, '_blank')
 }
 
-onMounted(() => {
+const hitokoto = ref('正在获取...')
+
+onMounted(async () => {
   loadRecommendedLinks()
+  try {
+    const response = await fetch('https://v1.hitokoto.cn/?encode=text')
+    if (response.ok) {
+      hitokoto.value = await response.text()
+    } else {
+      hitokoto.value = '生活明朗，万物可爱。' // fallback
+    }
+  } catch (error) {
+    console.error('Failed to fetch hitokoto:', error)
+    hitokoto.value = '生活明朗，万物可爱。' // fallback
+  }
 })
 </script>
 
@@ -491,6 +528,63 @@ onMounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.donation-card {
+  margin-bottom: 32px;
+}
+
+.donation-content h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--td-text-color-primary);
+  margin: 0 0 16px 0;
+}
+
+.donation-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--td-text-color-secondary);
+  margin: 0 0 16px 0;
+}
+
+.hitokoto-text {
+  text-align: center;
+  font-style: italic;
+  margin: 20px 0;
+  font-size: 16px;
+  color: var(--td-text-color-secondary);
+  padding: 16px;
+  background: var(--td-bg-color-secondarycontainer);
+  border-radius: 6px;
+}
+
+.donation-section {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.donation-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donation-qr-code {
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  border: 1px solid var(--td-border-level-1-color);
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #fff;
 }
 
 /* 响应式设计 */
