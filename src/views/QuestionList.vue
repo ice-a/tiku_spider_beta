@@ -183,7 +183,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch, onActivated } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import {
   Input,
@@ -294,6 +294,13 @@ function handleVisibilityChange() {
 // 组件卸载时清理事件监听
 onUnmounted(() => {
   document.removeEventListener('visibilitychange', handleVisibilityChange)
+})
+
+// 当组件被激活时（从其他页面返回）
+onActivated(async () => {
+  // 强制刷新题目列表和统计数据，以同步收藏状态
+  await loadData()
+  updateStats()
 })
 
 // 监听筛选条件变化
