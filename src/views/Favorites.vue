@@ -320,7 +320,7 @@ function removeWrongAnswer(questionId: string) {
 // 清空所有收藏
 function clearAllFavorites() {
   const userData = getUserData()
-  userData.favorites = []
+  userData.favoriteIds = []
   saveUserData(userData)
   loadData()
   MessagePlugin.success('已清空所有收藏')
@@ -329,7 +329,7 @@ function clearAllFavorites() {
 // 清空所有错题
 function clearAllWrongAnswers() {
   const userData = getUserData()
-  userData.wrongAnswers = []
+  userData.wrongAnswerIds = []
   saveUserData(userData)
   loadData()
   MessagePlugin.success('已清空错题本')

@@ -34,22 +34,7 @@
                 </template>
                 关于
               </Button>
-              <div v-if="!isLoggedIn" class="auth-buttons">
-                <Button @click="goToLogin" variant="text" theme="primary" class="nav-button">
-                  登录
-                </Button>
-                <Button @click="goToRegister" variant="outline" theme="primary" class="nav-button">
-                  注册
-                </Button>
-              </div>
-              <div v-else class="user-info">
-                <Button variant="text" theme="primary" class="nav-button">
-                  {{ userInfo?.username }}
-                </Button>
-                <Button @click="handleLogout" variant="outline" theme="default" class="nav-button">
-                  退出
-                </Button>
-              </div>
+
             </div>
           </div>
         </div>
@@ -226,7 +211,6 @@ import {
   isFavorite,
   getFavoriteIds
 } from '../services/storageService'
-import authService from '../services/authService'
 import type { Question } from '../types'
 
 const router = useRouter()
@@ -253,17 +237,6 @@ const difficulties = ref([
 
 // 统计数据
 const favoriteCount = ref(0)
-
-// 认证相关
-const isLoggedIn = ref(false)
-// 定义用户信息类型
-interface UserInfo {
-  username: string;
-  email?: string;
-  id?: string;
-  [key: string]: any;
-}
-const userInfo = ref<UserInfo | null>(null)
 
 // 计算属性
 const currentPage = computed({
@@ -306,7 +279,6 @@ onMounted(async () => {
   }
   
   updateStats()
-  await checkAuthStatus()
   
   // 监听页面可见性变化，当用户返回时更新统计数据
   document.addEventListener('visibilitychange', handleVisibilityChange)
@@ -432,36 +404,7 @@ function goToAbout() {
   router.push('/about')
 }
 
-// 跳转到登录页面
-function goToLogin() {
-  router.push('/login')
-}
 
-// 跳转到注册页面
-function goToRegister() {
-  router.push('/register')
-}
-
-// 检查认证状态
-async function checkAuthStatus() {
-  isLoggedIn.value = authService.isLoggedIn()
-  if (isLoggedIn.value) {
-    userInfo.value = await authService.getCurrentUser()
-  }
-}
-
-// 处理退出登录
-async function handleLogout() {
-  try {
-    await authService.logout()
-    isLoggedIn.value = false
-    userInfo.value = null
-    // 重新加载页面以清除状态
-    window.location.reload()
-  } catch (error) {
-    console.error('退出登录失败:', error)
-  }
-}
 
 // 更新统计数据
 function updateStats() {

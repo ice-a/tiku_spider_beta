@@ -42,6 +42,7 @@
                 <li><CheckCircleIcon size="16" /> 个人收藏和错题本功能</li>
                 <li><CheckCircleIcon size="16" /> 学习进度统计和分析</li>
                 <li><CheckCircleIcon size="16" /> 响应式设计，支持多端访问</li>
+                <li><CheckCircleIcon size="16" /> <a href="https://f.wps.cn/g/5tIf092F" target="_blank">在线提交新的题目</a></li>
               </ul>
               
               <h3>技术栈</h3>

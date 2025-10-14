@@ -50,7 +50,7 @@
         <div class="tips-section">
           <div class="tips-box">
             <InfoCircleIcon size="20" />
-            <span>如有任何问题或建议，欢迎通过关于页面联系我们！</span>
+            <span>更新了登录注册页面，很遗憾还是无法登录</span>
           </div>
         </div>
       </div>
