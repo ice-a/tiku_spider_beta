@@ -23,35 +23,9 @@
         <div class="update-section">
           <h4>🎉 新功能上线</h4>
           <ul>
-            <li>优化了题目收藏功能，支持快速收藏和取消收藏</li>
-            <li>新增关于页面，提供联系方式和项目信息</li>
-            <li>改进了题目搜索和筛选功能</li>
+            <li>添加了通过wps表单提交题目的内容</li>
+            <li>移除了注册、登录的功能，收藏的数据存储在本地浏览器中</li>
           </ul>
-        </div>
-
-        <div class="update-section">
-          <h4>🔧 功能优化</h4>
-          <ul>
-            <li>简化了用户界面，提升使用体验</li>
-            <li>优化了数据加载性能</li>
-            <li>修复了已知的显示问题</li>
-          </ul>
-        </div>
-
-        <div class="update-section">
-          <h4>📱 响应式改进</h4>
-          <ul>
-            <li>优化了移动端显示效果</li>
-            <li>改进了触摸操作体验</li>
-            <li>适配了更多屏幕尺寸</li>
-          </ul>
-        </div>
-
-        <div class="tips-section">
-          <div class="tips-box">
-            <InfoCircleIcon size="20" />
-            <span>更新了登录注册页面，很遗憾还是无法登录</span>
-          </div>
         </div>
       </div>
     </div>
