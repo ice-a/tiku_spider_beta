@@ -600,8 +600,8 @@ onMounted(async () => {
 }
 
 .donation-qr-code {
-  width: 180px;
-  height: 180px;
+  width: 300px;
+  height: 300px;
   border-radius: 8px;
   border: 1px solid var(--td-border-level-1-color);
   margin-bottom: 12px;
