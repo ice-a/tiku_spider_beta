@@ -81,12 +81,16 @@
             <p class="hitokoto-text">"{{ hitokoto }}"</p>
             <div class="donation-section">
               <div class="donation-item">
-                <img src="/talk.jpg" alt="WeChat Pay" class="donation-qr-code" />
+                <img src="/talk.jpg" alt="talkabout" class="donation-qr-code" />
                 <p>爬虫宝子们学习交流群</p>
               </div>
               <div class="donation-item">
-                <img src="/spiderdemo.jpg" alt="Alipay" class="donation-qr-code" />
+                <img src="/spiderdemo.jpg" alt="Spiderdemo" class="donation-qr-code" />
                 <p>spiderdemo联系平台(添加大佬可以备注题库练习平台)</p>
+              </div>
+              <div class="donation-item">
+                <img src="/chat.png" alt="Person" class="donation-qr-code" />
+                <p>二维码过期可以添加微信进群交流(备注daydayup)</p>
               </div>
             </div>
           </div>
