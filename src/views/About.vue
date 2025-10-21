@@ -89,8 +89,8 @@
                 <p>spiderdemo联系平台(添加大佬可以备注题库练习平台)</p>
               </div>
               <div class="donation-item">
-                <img src="/chat.png" alt="Person" class="donation-qr-code" />
-                <p>二维码过期可以添加微信进群交流(备注daydayup)</p>
+                <img src="/chat.jpg" alt="Person" class="donation-qr-code" />
+                <p>木子打杂spider</p>
               </div>
             </div>
           </div>
@@ -604,8 +604,8 @@ onMounted(async () => {
 }
 
 .donation-qr-code {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
   border: 1px solid var(--td-border-level-1-color);
   margin-bottom: 12px;
