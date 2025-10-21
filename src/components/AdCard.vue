@@ -1,27 +1,27 @@
 <template>
   <div class="ad-card">
     <div class="ad-image-container">
-      <img 
-        :src="ad.image" 
-        :alt="ad.title"
-        class="ad-image"
-        @error="handleImageError"
+      <img
+          :src="ad.image"
+          :alt="ad.title"
+          class="ad-image"
+          @error="handleImageError"
       />
       <div v-if="ad.sponsored" class="sponsored-badge">
         赞助
       </div>
     </div>
-    
+
     <div class="ad-content">
       <h3 class="ad-title">{{ ad.title }}</h3>
       <p class="ad-description">{{ ad.description }}</p>
-      
+
       <div class="ad-footer">
-        <a 
-          :href="ad.link" 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="ad-link"
+        <a
+            :href="ad.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ad-link"
         >
           查看详情 →
         </a>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 interface AdItem {
   id: number
@@ -156,15 +156,15 @@ const handleImageError = () => {
   .ad-image-container {
     height: 140px;
   }
-  
+
   .ad-content {
     padding: 16px;
   }
-  
+
   .ad-title {
     font-size: 16px;
   }
-  
+
   .ad-description {
     font-size: 13px;
   }

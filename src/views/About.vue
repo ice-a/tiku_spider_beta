@@ -58,17 +58,39 @@
                 本题库包含以下技术领域的题目：
               </p>
               <div class="data-categories">
-                <Tag variant="outline">初级爬虫</Tag>
-                <Tag variant="outline">中级爬虫</Tag>
-                <Tag variant="outline">高级爬虫</Tag>
-                <Tag variant="outline">中级反爬</Tag>
-                <Tag variant="outline">高级反爬</Tag>
-                <Tag variant="outline">高级逆向</Tag>
+                <Tag variant="outline">爬虫基础</Tag>
+                <Tag variant="outline">爬虫进阶</Tag>
+                <Tag variant="outline">爬虫高级</Tag>
+                <Tag variant="outline">逆向工程</Tag>
+                <Tag variant="outline">反爬虫</Tag>
+                <Tag variant="outline">反爬虫高级</Tag>
+                <Tag variant="outline">面试真题</Tag>
               </div>
             </div>
           </div>
         </Card>
 
+        <!-- 交流群 -->
+        <Card class="donation-card">
+          <div class="donation-content">
+            <h2>
+              <HeartIcon size="24" />
+              交流群
+            </h2>
+            <p>good good study day day up</p>
+            <p class="hitokoto-text">"{{ hitokoto }}"</p>
+            <div class="donation-section">
+              <div class="donation-item">
+                <img src="/talk.jpg" alt="WeChat Pay" class="donation-qr-code" />
+                <p>爬虫宝子们学习交流群</p>
+              </div>
+              <div class="donation-item">
+                <img src="/spiderdemo.jpg" alt="Alipay" class="donation-qr-code" />
+                <p>spiderdemo联系平台(添加大佬可以备注题库练习平台)</p>
+              </div>
+            </div>
+          </div>
+        </Card>
         <!-- 赞赏区域 -->
         <Card class="donation-card">
           <div class="donation-content">
